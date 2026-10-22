@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Academic Course Timetable</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="page">
+        <div class="controls">
+            <h1>Drag cards to build your own timetable</h1>
+            <p>Move cards, edit their details, add new ones, and choose any color from the palette.</p>
+            <div class="control-row">
+                <button id="delete-card-btn" type="button">Delete card</button>
+                <button id="add-card-btn" type="button">Create new card</button>
+                <button id="clear-table-btn" type="button">Clear table</button>
+                <button id="save-file-btn" type="button">Save</button>
+                <button id="open-file-btn" type="button">Open</button>
+                <button id="download-pdf-btn" type="button">Download PDF</button>
+                <input id="file-input" type="file" accept=".csv,.txt" hidden>
+            </div>
+        </div>
+
+        <div class="workspace">
+            <aside class="editor-panel">
+                <h2>Card editor</h2>
+                <label>
+                    Course code
+                    <input id="course-code" type="text" placeholder="ECL204">
+                </label>
+                <label>
+                    Subject title
+                    <input id="course-title" type="text" placeholder="Network Theory">
+                </label>
+                <label>
+                    Professor
+                    <input id="course-prof" type="text" placeholder="Dr. Name">
+                </label>
+                <label>
+                    Class location
+                    <input id="course-location" type="text" placeholder="L103">
+                </label>
+                <div class="color-section">
+                    <span>Choose color</span>
+                    <div id="color-palette" class="swatches"></div>
+                </div>
+
+                <label>
+                    New time value
+                    <input id="time-value-input" type="text" placeholder="08:30 - 09:25">
+                </label>
+                <div class="control-row compact">
+                    <button id="add-time-btn" type="button">Add time row</button>
+                    <button id="delete-time-btn" type="button">Delete time row</button>
+                </div>
+
+                <label>
+                    New day name
+                    <input id="day-name-input" type="text" placeholder="Saturday">
+                </label>
+                <div class="control-row compact">
+                    <button id="add-day-btn" type="button">Add day</button>
+                    <button id="delete-day-btn" type="button">Delete day</button>
+                </div>
+
+                <p class="hint">Click a time row or day header to select it before deleting.</p>
+            </aside>
+
+            <div class="timetable-wrapper">
+                <div class="timetable-container" id="timetable">
+                    <div class="header time-label">Time</div>
+                    <div class="header day-header" data-day-index="0">Monday</div>
+                    <div class="header day-header" data-day-index="1">Tuesday</div>
+                    <div class="header day-header" data-day-index="2">Wednesday</div>
+                    <div class="header day-header" data-day-index="3">Thursday</div>
+                    <div class="header day-header" data-day-index="4">Friday</div>
+
+                    <div class="time-slot">08:30 - 09:25</div>
+                    <div class="cell">
+                        <div class="card network-theory" data-light="#b83256" data-dark="#31111d" draggable="true">
+                            <div class="code">CSL100</div>
+                            <div class="title">programing</div>
+                            <div class="prof">Dr. xyz</div>
+                            <div class="location">L101</div>
+                        </div>
+                    </div>
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+
+                    <div class="time-slot">09:30 - 10:25</div>
+                    <div class="cell"></div>
+                    <div class="cell">
+                        <div class="card signals" data-light="#cca133" data-dark="#3b2a12" draggable="true">
+                            <div class="code">Course Code</div>
+                            <div class="title">Course Name</div>
+                            <div class="prof">prof Name</div>
+                            <div class="location">vanue</div>
+                        </div>
+                    </div>
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+
+                    <div class="time-slot">10:30 - 11:25</div>
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+                    <div class="cell">
+                        <div class="card digital" data-light="#c85329" data-dark="#351b14" draggable="true">
+                            <div class="code">Course Code</div>
+                            <div class="title">Course Name</div>
+                            <div class="prof">prof Name</div>
+                            <div class="location">vanue</div>
+                        </div>
+                    </div>
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+
+                    <div class="time-slot">11:30 - 12:25</div>
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+
+                    <div class="time-slot">12:30 - 13:25</div>
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+                    <div class="cell"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

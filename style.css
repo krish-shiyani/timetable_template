@@ -1,0 +1,287 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    padding: 24px;
+    background: linear-gradient(135deg, #0b0c10 0%, #11131b 100%);
+    color: #f5f7fb;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.page {
+    max-width: 1500px;
+    margin: 0 auto;
+}
+
+.controls {
+    margin-bottom: 20px;
+}
+
+.controls h1 {
+    margin: 0 0 8px;
+    font-size: 24px;
+}
+
+.controls p {
+    margin: 0 0 12px;
+    color: #b8bcc8;
+}
+
+.control-row {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.control-row.compact {
+    gap: 8px;
+    margin-top: 6px;
+}
+
+button {
+    border: none;
+    border-radius: 999px;
+    padding: 10px 16px;
+    font-weight: 600;
+    background: #4cc9f0;
+    color: #07111d;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 16px rgba(76, 201, 240, 0.25);
+}
+
+.workspace {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.editor-panel {
+    min-width: 260px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 16px;
+    padding: 16px;
+    backdrop-filter: blur(12px);
+}
+
+.editor-panel h2 {
+    margin-top: 0;
+    font-size: 18px;
+}
+
+.editor-panel label {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 10px;
+    font-size: 13px;
+    color: #d6dae3;
+}
+
+.editor-panel input {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    padding: 8px 10px;
+    background: rgba(0, 0, 0, 0.2);
+    color: #fff;
+}
+
+.color-section {
+    margin-top: 8px;
+}
+
+.swatches {
+    display: grid;
+    grid-template-columns: repeat(10, minmax(0, 1fr));
+    gap: 5px;
+    margin-top: 8px;
+}
+
+.swatch {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.25);
+    padding: 0;
+    background: none;
+    box-shadow: none;
+}
+
+.swatch.active {
+    border-color: #fff;
+    transform: scale(1.08);
+}
+
+.hint {
+    margin: 12px 0 0;
+    color: #8d94a5;
+    font-size: 13px;
+}
+
+.timetable-wrapper {
+    flex: 1;
+    overflow-x: auto;
+}
+
+.timetable-container {
+    display: grid;
+    grid-template-columns: 130px repeat(5, minmax(180px, 1fr));
+    gap: 12px;
+    width: 100%;
+    min-width: 1200px;
+}
+
+.header {
+    font-weight: 600;
+    color: #8d94a5;
+    text-align: left;
+    padding: 6px 4px;
+    font-size: 14px;
+}
+
+.header.day-header.is-selected {
+    color: #fff;
+}
+
+.time-slot {
+    display: flex;
+    align-items: center;
+    color: #8d94a5;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.time-slot.is-selected {
+    color: #fff;
+}
+
+.cell {
+    min-height: 136px;
+    border: 1px dashed rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 8px;
+    transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.cell.is-over {
+    border-color: #4cc9f0;
+    background: rgba(76, 201, 240, 0.12);
+}
+
+.cell.active-cell {
+    border-color: #fff;
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.cell.merged-cell {
+    min-height: 280px;
+    grid-row: span 2;
+}
+
+.cell.merged-cell .card {
+    min-height: 220px;
+}
+
+.card {
+    border-radius: 10px;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 4px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.28);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    min-height: 110px;
+    cursor: grab;
+    user-select: none;
+    background: var(--card-gradient, linear-gradient(135deg, #31111d 0%, #5b1b31 100%));
+    border-left: 4px solid var(--card-accent, #ff6b6b);
+}
+
+.card.dragging {
+    opacity: 0.6;
+    transform: scale(0.98);
+}
+
+.card.is-selected {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+}
+
+.card .title {
+    font-size: 13px;
+    font-weight: 700;
+    color: #ffffff;
+    opacity: 0.95;
+    line-height: 1.4;
+    letter-spacing: 0.2px;
+}
+
+.card .code {
+    font-size: 17px;
+    font-weight: 800;
+    color: #fdfdfd;
+    line-height: 1.3;
+}
+
+.card .prof,
+.card .location {
+    font-size: 11px;
+    color: #f5f6f8;
+    opacity: 0.92;
+}
+
+.card .prof {
+    color: #e8f5ff;
+}
+
+.card .location {
+    margin-top: 2px;
+    font-weight: 700;
+    color: #fff3d6;
+}
+
+.stats {
+    --card-gradient: linear-gradient(135deg, #10222d 0%, #1a485d 100%);
+    --card-accent: #338fcc;
+}
+
+.English {
+    --card-gradient: linear-gradient(135deg, #23123a 0%, #4c1c67 100%);
+    --card-accent: #7b2cf3;
+}
+
+.network-theory {
+    --card-gradient: linear-gradient(135deg, #31111d 0%, #6c2342 100%);
+    --card-accent: #b83256;
+}
+
+.signals {
+    --card-gradient: linear-gradient(135deg, #3b2a12 0%, #7b5522 100%);
+    --card-accent: #cca133;
+}
+
+.digital {
+    --card-gradient: linear-gradient(135deg, #351b14 0%, #7a3a1c 100%);
+    --card-accent: #c85329;
+}
+
+.electronics {
+    --card-gradient: linear-gradient(135deg, #121e36 0%, #223b6a 100%);
+    --card-accent: #2962ff;
+}
+
+.communication {
+    --card-gradient: linear-gradient(135deg, #0f2b19 0%, #1d4f2c 100%);
+    --card-accent: #1db954;
+}
