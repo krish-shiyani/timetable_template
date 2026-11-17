@@ -1,138 +1,57 @@
-# 📅 Academic Course Timetable Builder
+# Academic Course Timetable Builder
 
-An interactive, responsive, and lightweight client-side web application designed to create, organize, customize, and export academic course schedules. Built entirely with **vanilla HTML5, CSS3, and modern JavaScript**, with **zero dependencies** and no build step required.
+Create and customize a weekly course timetable in your browser. Add courses, organize them by day and time, and save your schedule as a CSV file or PDF.
 
----
+**Open the website:** [Academic Course Timetable Builder](https://krish-shiyani.github.io/timetable_template/)
 
-## ✨ Features
+## How to use the website
 
-- **🎯 Drag-and-Drop Interface**
-  - Drag course cards smoothly across time slots and days.
-  - Automatic swapping when dropping a card onto an already occupied slot.
-- **🎨 Visual Card Editor & Color Palette**
-  - Customize Course Code, Subject Title, Professor name, and Room/Location.
-  - 10 vibrant gradient swatches (Cyan, Red, Amber, Green, Purple, Blue, Pink, Teal, Orange, Gray) with accented borders for clear visual categorization.
-- **⏱️ Smart Grid Customization**
-  - **Dynamic Time Rows**: Add or delete time rows on the fly. The smart time-slot generator analyzes previous intervals and breaks (e.g. 50/55 min classes with 5/10 min breaks, 12h AM/PM or 24h formats) to suggest the next slot.
-  - **Dynamic Days**: Add or remove day columns (e.g. Monday–Friday, Saturday/Sunday, or custom day names) with auto-adjusting CSS grid columns.
-- **⌨️ Clipboard & Productivity Shortcuts**
-  - Copy and paste course cards using standard `Ctrl+C` / `Ctrl+V` (or `Cmd+C` / `Cmd+V`).
-  - Double-click an empty cell to paste the copied card.
-  - Double-click a card to inspect and edit its properties.
-- **💾 Auto-Save & Data Portability**
-  - **Session Auto-Save**: Utilizes a `MutationObserver` to automatically preserve changes to `sessionStorage` as you edit.
-  - **CSV Export & Import**: Save your timetable to a portable CSV file and restore it anytime.
-  - **PDF Export**: Built-in print preview optimized with high-contrast, print-accurate dark styling (`print-color-adjust: exact`).
-- **🌙 Modern Dark UI**
-  - Sleek dark aesthetic with frosted-glass panels (`backdrop-filter`), smooth hover transitions, and responsive grid scrolling.
+The timetable opens with example courses. Edit these or replace them with your own schedule.
 
----
+### 1. Add and edit courses
 
-## 🚀 Quick Start
+1. Click an empty timetable cell to choose where a new course should go.
+2. Click **Create new card**. The new card is selected.
+3. Enter the course code, subject title, professor, and class location in the **Card editor**. The card updates as you type.
+4. Choose a color swatch to change the selected card's color.
 
-No installation, Node.js, or compilation needed!
+Click any existing card to select it and edit its details. Drag a card to another cell to move it; dropping it onto another card swaps their positions.
 
-### Method 1: Open Directly in Browser
-Simply double-click [`index.html`](index.html) or open it with your favorite browser:
-```bash
-xdg-open index.html   # Linux
-open index.html       # macOS
-start index.html      # Windows
-```
+### 2. Copy, move, or remove courses
 
-### Method 2: Serve via a Local HTTP Server (Optional)
-If you prefer running through a local development server:
+- Select a card and press `Ctrl+C` (Windows/Linux) or `Cmd+C` (macOS) to copy it. Select a destination cell and press `Ctrl+V` or `Cmd+V` to paste.
+- You can also double-click a cell to paste the copied card.
+- Select a card and click **Delete card** to remove it.
+- Click **Clear table** to remove all course cards. This does not delete the days or time rows.
 
-Using Python:
+The copied card is held in the page while it is open; it is separate from the system text clipboard.
+
+### 3. Customize days and times
+
+- **Add a time row:** Enter a time range in **New time value** (for example, `14:00 - 15:00`) and click **Add time row**. Leave it blank to use the suggested next time based on the existing rows.
+- **Delete a time row:** Click its time label to select it, then click **Delete time row**.
+- **Add a day:** Click a day header to select it, enter a name in **New day name**, then click **Add day**. The new day is inserted next to the selected day. If no day is selected, it is added at the end.
+- **Delete a day:** Click its header to select it, then click **Delete day**. Its course cards are removed with it. At least one day remains.
+
+### 4. Save, reopen, or print your timetable
+
+- Click **Save** to download the current timetable as `timetable.csv`.
+- Click **Open** and choose a timetable `.csv` or `.txt` file to load it. Use a CSV previously saved by this app for the most reliable results.
+- Click **Download PDF** to open the browser's print dialog. Choose **Save as PDF** to save a PDF, or select a printer to print it.
+- Changes are also saved temporarily in the current browser tab's session. Download a CSV to keep a backup you can reopen later.
+
+## Run locally
+
+The website uses plain HTML, CSS, and JavaScript and requires no installation or build step. Download or clone the repository, then open `index.html` in a modern browser.
+
+Alternatively, run a local server from the project folder:
+
 ```bash
 python3 -m http.server 8000
 ```
-Then visit [http://localhost:8000](http://localhost:8000).
 
-Using Node.js:
-```bash
-npx serve .
-```
+Then open [http://localhost:8000](http://localhost:8000).
 
----
+## Browser support
 
-## 📖 How to Use
-
-### 1. Managing Course Cards
-- **Create Card**: Click **"Create new card"** in the top bar to place a card in the selected or first available empty cell.
-- **Edit Card**: Click any card to load its details into the **Card editor** side panel. Changes update live in the timetable.
-- **Move Card**: Click and drag any card to another cell. If the target cell already has a card, their positions will swap automatically.
-- **Delete Card**: Select a card and click **"Delete card"** in the top bar.
-- **Clear All**: Click **"Clear table"** to remove all cards from the grid.
-
-### 2. Customizing Timetable Grid
-- **Add Time Row**: Type a custom time range (e.g. `14:00 - 15:00`) into the **New time value** input, or leave it blank to use the smart calculated suggestion, then click **"Add time row"**.
-- **Delete Time Row**: Click a time slot header on the left to select it, then click **"Delete time row"**.
-- **Add Day Column**: Enter a day name (e.g. `Saturday`) in the **New day name** input and click **"Add day"**. The day is inserted next to the currently selected day header.
-- **Delete Day Column**: Click a day header to select it, then click **"Delete day"**.
-
-### 3. Saving & Exporting
-- **Save to File**: Click **"Save"** to download a `timetable.csv` file containing the complete grid structure and course metadata.
-- **Open File**: Click **"Open"** to select a previously exported CSV or TXT file and restore your timetable.
-- **Download PDF**: Click **"Download PDF"** to open a print-optimized window and save your timetable as a PDF or send it directly to a printer.
-
----
-
-## ⌨️ Shortcuts & Interactions
-
-| Action | Mouse / Keyboard Shortcut |
-| :--- | :--- |
-| **Select Card** | Click on any course card |
-| **Select Cell** | Click on any empty cell |
-| **Copy Card** | Select card, then press `Ctrl + C` / `Cmd + C` |
-| **Paste Card** | Select target cell, then press `Ctrl + V` / `Cmd + V` |
-| **Quick Paste** | Double-click an empty cell (pastes clipboard card) |
-| **Select Time Row** | Click on the time slot label (left column) |
-| **Select Day Column**| Click on the day header (top row) |
-| **Drag & Swap** | Drag a card over another card and drop |
-
----
-
-## 📁 Project Structure
-
-```text
-timetable_template/
-├── index.html       # Timetable markup, control headers, and card editor panel
-├── style.css        # Dark mode styling, CSS grid layout, animations, and typography
-├── script.js        # Core logic: drag & drop, time calculator, CSV parser, and PDF export
-└── README.md        # Project documentation
-```
-
-### File Highlights
-- **[`index.html`](index.html)**: Provides the semantic layout including the top control toolbar, the side editor panel with color swatches, and the grid container.
-- **[`style.css`](style.css)**: Implements CSS Grid for responsive multi-column timetable schedules, custom scrollbars, and color accent variables (`--card-accent`, `--card-gradient`).
-- **[`script.js`](script.js)**: Contains all interaction handling, CSV serialization/deserialization with proper quote escaping, smart time parser, session storage sync via `MutationObserver`, and print window generation.
-
----
-
-## 💾 CSV Data Format
-
-When exporting via the **Save** button, the schedule is saved as a standard CSV where:
-- Row 1: Header containing `"time"` followed by day names (`"time","Monday","Tuesday",...`).
-- Subsequent rows: First column is the time slot string, followed by JSON-encoded course metadata for each cell:
-  ```json
-  {"code":"CSL100","title":"Programming","prof":"Dr. Smith","location":"L101","light":"#ff6b6b","dark":"#7a1f2d","className":"custom"}
-  ```
-Empty cells are represented as empty strings `""`.
-
----
-
-## 🌐 Browser Support
-
-Compatible with all modern browsers supporting ECMAScript 6+ and HTML5 Drag and Drop API:
-- Google Chrome / Chromium
-- Mozilla Firefox
-- Microsoft Edge
-- Apple Safari
-- Brave, Opera, Vivaldi
-
----
-
-## 📄 License
-
-This project is open-source and free to use for personal, academic, or commercial purposes.
+Use a modern browser with support for HTML5, CSS Grid, JavaScript, and drag-and-drop. Printing and saving as PDF are provided by the browser's print dialog.

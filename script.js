@@ -203,13 +203,20 @@ function restoreTimetableFromSession() {
 }
 
 function downloadTimetableFile() {
+    const requestedFilename = window.prompt('Enter a filename (the .csv extension is added automatically):', 'timetable');
+    if (requestedFilename === null) return;
+
+    const filename = requestedFilename.trim()
+        .replace(/\.csv$/i, '')
+        .replace(/[<>:"/\\|?*\u0000-\u001F]/g, '-')
+        .trim() || 'timetable';
     const state = getTimetableState();
     const csvContent = serializeStateToCsv(state);
     const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.download = 'timetable.csv';
+    link.download = `${filename}.csv`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
