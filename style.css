@@ -218,6 +218,10 @@ button:hover {
     outline-offset: 2px;
 }
 
+.card > div:empty {
+    display: none;
+}
+
 .card .title {
     font-size: 13px;
     font-weight: 700;

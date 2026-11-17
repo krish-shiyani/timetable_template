@@ -140,10 +140,10 @@ function buildTimetableFromState(state) {
                 try {
                     const cardData = JSON.parse(cellValue);
                     const card = createCardElement({
-                        code: cardData.code || 'NEW',
-                        title: cardData.title || 'New Course',
-                        prof: cardData.prof || 'Instructor',
-                        location: cardData.location || 'L103',
+                        code: cardData.code || '',
+                        title: cardData.title || '',
+                        prof: cardData.prof || '',
+                        location: cardData.location || '',
                         lightColor: cardData.light || colorPalette[0].light,
                         darkColor: cardData.dark || colorPalette[0].dark,
                         subjectClass: cardData.className || 'custom'
@@ -475,10 +475,10 @@ function bindCellEvents(cell) {
     cell.addEventListener('dblclick', () => {
         if (clipboardCard) {
             const pastedCard = createCardElement({
-                code: clipboardCard.querySelector('.code')?.textContent || 'NEW',
-                title: clipboardCard.querySelector('.title')?.textContent || 'New Course',
-                prof: clipboardCard.querySelector('.prof')?.textContent || 'Instructor',
-                location: clipboardCard.querySelector('.location')?.textContent || 'L103',
+                code: clipboardCard.querySelector('.code')?.textContent || '',
+                title: clipboardCard.querySelector('.title')?.textContent || '',
+                prof: clipboardCard.querySelector('.prof')?.textContent || '',
+                location: clipboardCard.querySelector('.location')?.textContent || '',
                 lightColor: clipboardCard.dataset.light || colorPalette[0].light,
                 darkColor: clipboardCard.dataset.dark || colorPalette[0].dark,
                 subjectClass: 'custom'
@@ -520,10 +520,10 @@ function bindCellEvents(cell) {
 
 function updateCardText(card) {
     if (!card) return;
-    card.querySelector('.code').textContent = courseCodeInput.value.trim() || 'New Class';
-    card.querySelector('.title').textContent = courseTitleInput.value.trim() || 'Untitled';
-    card.querySelector('.prof').textContent = courseProfInput.value.trim() || 'Instructor';
-    card.querySelector('.location').textContent = courseLocationInput.value.trim() || 'L103';
+    card.querySelector('.code').textContent = courseCodeInput.value.trim();
+    card.querySelector('.title').textContent = courseTitleInput.value.trim();
+    card.querySelector('.prof').textContent = courseProfInput.value.trim();
+    card.querySelector('.location').textContent = courseLocationInput.value.trim();
 }
 
 function copyTextToClipboard(text) {
@@ -613,10 +613,10 @@ document.addEventListener('keydown', (event) => {
 
         const targetCell = selectedCell || cells.find((cell) => !cell.querySelector('.card')) || cells[0];
         const pastedCard = createCardElement({
-            code: clipboardCard.querySelector('.code')?.textContent || 'NEW',
-            title: clipboardCard.querySelector('.title')?.textContent || 'New Course',
-            prof: clipboardCard.querySelector('.prof')?.textContent || 'Instructor',
-            location: clipboardCard.querySelector('.location')?.textContent || 'L103',
+            code: clipboardCard.querySelector('.code')?.textContent || '',
+            title: clipboardCard.querySelector('.title')?.textContent || '',
+            prof: clipboardCard.querySelector('.prof')?.textContent || '',
+            location: clipboardCard.querySelector('.location')?.textContent || '',
             lightColor: clipboardCard.dataset.light || colorPalette[0].light,
             darkColor: clipboardCard.dataset.dark || colorPalette[0].dark,
             subjectClass: 'custom'
@@ -654,10 +654,10 @@ document.querySelectorAll('.header.day-header').forEach((header) => {
 document.getElementById('add-card-btn').addEventListener('click', () => {
     const targetCell = getTargetCell();
     const newCard = createCardElement({
-        code: 'NEW',
-        title: 'New Course',
-        prof: 'Instructor',
-        location: 'L103',
+        code: '',
+        title: '',
+        prof: '',
+        location: '',
         lightColor: colorPalette[0].light,
         darkColor: colorPalette[0].dark,
         subjectClass: 'custom'
